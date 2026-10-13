@@ -111,11 +111,11 @@ export const Hero: React.FC = () => {
 
         {/* 3. BAŞLIK VE EL YAZISI FIRÇA ANİMASYONU */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.9,
-            delay: 0.25,
+            duration: 0.8,
+            delay: 0.15,
             ease: [0.21, 1.02, 0.49, 0.99],
           }}
           className="space-y-4 sm:space-y-5"
@@ -172,9 +172,9 @@ export const Hero: React.FC = () => {
 
         {/* 4. MİKRO ETKİLEŞİM: whileHover, whileTap ve Sağa Kayan İkon Butonları */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
           className="mt-8 sm:mt-11 flex flex-wrap items-center justify-center gap-4"
         >
           <motion.button

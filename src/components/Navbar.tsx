@@ -44,14 +44,16 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-[padding] duration-300 px-4 sm:px-6 lg:px-8 ${
-          isScrolled ? 'py-3' : 'py-5'
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 px-4 sm:px-6 lg:px-8 ${
+          isScrolled
+            ? 'py-3 backdrop-blur-md bg-brand-navy/80 border-b border-white/10 shadow-lg'
+            : 'py-5 bg-transparent'
         }`}
       >
         <div
           className={`max-w-6xl mx-auto rounded-full transition-colors duration-300 px-5 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between ${
             isScrolled
-              ? 'bg-brand-navy/90 backdrop-blur-md shadow-2xl border border-white/10 text-white'
+              ? 'bg-brand-navy/90 border border-white/15 text-white shadow-md'
               : 'bg-brand-navy/35 backdrop-blur-sm border border-brand-navy/15 text-brand-navy'
           }`}
         >

@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-brand-teal text-brand-navy selection:bg-brand-navy selection:text-brand-yellow font-sans relative antialiased">
+    <div className="min-h-screen bg-brand-navy text-white selection:bg-brand-yellow selection:text-brand-navy font-sans relative antialiased">
       {/* Sabit Cam Efektli Gezinme Çubuğu */}
       <Navbar />
 

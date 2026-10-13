@@ -15,10 +15,10 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-between gap-10 relative z-10">
         {/* Ortalanmış Yapı: Logo, Başlık, Alıntı */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          transition={{ duration: 0.5 }}
           className="flex flex-col items-center text-center max-w-xl"
         >
           {/* Yuvarlak hatlı kart içindeki marka logosu */}
@@ -48,8 +48,8 @@ export const Footer: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/75"
         >
           <a href="#hero" className="hover:text-brand-yellow transition-colors font-medium">

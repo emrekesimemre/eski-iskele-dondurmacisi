@@ -19,7 +19,7 @@ const contactInfo: ContactDetails = {
   district: 'Ahlat',
   city: 'Bitlis',
   workingHours: 'Her gün 10:00 - 23:30',
-  phone: '+90 (505) 031 49 69',
+  phone: '+90 (434) 712 19 28',
   email: 'info@eskiiskeledondurmacisi.com',
   coordinates: {
     lat: 38.7519723,
@@ -59,7 +59,7 @@ export const Location: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-teal/15 text-brand-teal text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-teal/30"
           >
@@ -71,7 +71,7 @@ export const Location: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white leading-tight"
           >
@@ -83,8 +83,8 @@ export const Location: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light"
           >
             Van Gölü&apos;nün serinletici kıyısında, tarihi Ahlat İskelesi&apos;nin hemen yanı başında taze dövme dondurmamızla sizleri bekliyoruz.
@@ -97,11 +97,11 @@ export const Location: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
           {/* Sol Kart: İletişim Bilgileri (2 Kolon) */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-2 flex flex-col justify-between space-y-7 p-7 sm:p-9 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="will-change-transform will-change-opacity lg:col-span-2 flex flex-col justify-between space-y-7 p-7 sm:p-9 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl"
           >
             <div className="space-y-6">
               {/* Lokasyon Üst Başlık & Marka */}
@@ -205,11 +205,11 @@ export const Location: React.FC = () => {
 
           {/* Sağ Kart: Google Maps Haritası (3 Kolon) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-3 flex flex-col"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="will-change-transform will-change-opacity lg:col-span-3 flex flex-col"
           >
             <div className="relative w-full h-[450px] sm:h-[500px] lg:h-full min-h-[440px] rounded-3xl overflow-hidden border border-white/15 bg-white/5 shadow-2xl group">
               {/* Harita İçi Nabız Atan Canlı Konum Rozeti */}

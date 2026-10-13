@@ -107,14 +107,14 @@ export const menuItems: MenuItem[] = [
 
 type CategoryFilter = 'Tümü' | 'Klasik' | 'Mevsimlik' | 'Özel Reçete';
 
-// Animasyon varyantları
+// Animasyon varyantları (Layout shift'i önlemek için container gizlenmez)
 const gridContainerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.02,
     },
   },
 };
@@ -145,7 +145,7 @@ export const Menu: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4"
           >
@@ -157,7 +157,7 @@ export const Menu: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white mb-6"
           >
@@ -169,8 +169,8 @@ export const Menu: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed"
           >
             Tüm dondurmalarımızda sadece Ahlat yaylalarının taze sütü, yüksek dağların yabani salebi ve mevsiminde toplanan doğal meyveler kullanılır. Asla glikoz şurubu veya renklendirici içermez.
@@ -180,8 +180,8 @@ export const Menu: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10"
           >
             {(['Tümü', 'Klasik', 'Mevsimlik', 'Özel Reçete'] as CategoryFilter[]).map((category) => {
@@ -211,7 +211,7 @@ export const Menu: React.FC = () => {
           variants={gridContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.05 }}
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
@@ -222,12 +222,12 @@ export const Menu: React.FC = () => {
                 <motion.article
                   layout
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  initial={{ opacity: 0, scale: 0.98, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                  exit={{ opacity: 0, scale: 0.98, y: 10 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -8 }}
-                  className={`group relative rounded-3xl bg-white/5 backdrop-blur-sm p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border ${
+                  className={`will-change-transform will-change-opacity group relative rounded-3xl bg-white/5 backdrop-blur-sm p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border ${
                     isFeatured
                       ? 'md:col-span-2 border-brand-yellow/50 shadow-lg shadow-brand-yellow/5'
                       : 'border-white/10'
@@ -243,7 +243,7 @@ export const Menu: React.FC = () => {
                         loading="lazy"
                       />
 
-                      {/* GÖRSEL GEÇİŞİ (CRITICAL): Resmin en altına siyaha/laciverte doğru kaybolan gradient */}
+                      {/* GÖRSEL GEÇİŞİ: Resmin en altına siyaha/laciverte doğru kaybolan gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent pointer-events-none" />
 
                       {/* Resmin Sol Üst Rozeti (Yıldız + Tag / Yeşilimsi Arka Plan) */}

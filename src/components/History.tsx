@@ -51,72 +51,37 @@ const artisanValues: ArtisanValue[] = [
   },
 ];
 
-// Framer Motion Orkestrasyon Varyantları
-const sectionVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      staggerChildren: 0.18,
-    },
-  },
-};
-
+// GPU Dostu, Düşük Y Eksenli Varyantlar (Layout Shift'i Önler)
 const staggerRowVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.18,
-      delayChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
     },
   },
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const slideLeftVariants: Variants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const slideRightVariants: Variants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
     },
   },
 };
 
 const processStepVariants: Variants = {
-  hidden: { opacity: 0, x: -20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -131,17 +96,13 @@ export const History: React.FC = () => {
     offset: ['start end', 'end start'],
   });
 
-  // Parallax Y kaydırma ve Scale efekti
-  const imageY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.0]);
+  // Parallax Y kaydırma ve Scale efekti (GPU dostu hafif değerler)
+  const imageY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.0]);
 
   return (
-    <motion.section
+    <section
       id="hikaye"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.08 }}
-      variants={sectionVariants}
       className="relative w-full bg-[#fafafa] text-brand-navy py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Dekoratif Arka Plan Ahlat Dokusu */}
@@ -152,7 +113,13 @@ export const History: React.FC = () => {
         {/* ============================================================
             1. BÖLÜM: BAŞLIK & ÜST BÖLÜM
         ============================================================ */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          variants={staggerRowVariants}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
+        >
           <motion.div
             variants={fadeUpVariants}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy/5 text-brand-navy text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-navy/10"
@@ -176,11 +143,11 @@ export const History: React.FC = () => {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="w-24 sm:w-32 h-1.5 bg-brand-teal mx-auto mt-6 rounded-full origin-left"
           />
-        </div>
+        </motion.div>
 
         {/* ============================================================
             2. BÖLÜM: HİKAYE METNİ VE PARALLAX GÖRSEL
@@ -188,8 +155,11 @@ export const History: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           {/* Sol Kolon: Editoryal Anlatı & Rozetler */}
           <motion.div
-            variants={slideLeftVariants}
-            className="lg:col-span-6 space-y-6 text-base sm:text-lg leading-relaxed text-brand-navy/85"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="will-change-transform will-change-opacity lg:col-span-6 space-y-6 text-base sm:text-lg leading-relaxed text-brand-navy/85"
           >
             <div className="p-5 sm:p-7 rounded-2xl bg-white border-l-4 border-brand-teal shadow-md">
               <p className="font-serif italic text-lg sm:text-xl text-brand-navy leading-relaxed">
@@ -224,11 +194,14 @@ export const History: React.FC = () => {
 
           {/* Sağ Kolon: Parallax Görsel + Dönen "DOĞAL EL YAPIMI" Rozeti */}
           <motion.div
-            variants={slideRightVariants}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1, margin: "100px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 relative"
           >
             {/* Fotoğraf Çerçeve Container'ı */}
-            <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl p-3 sm:p-5 bg-white shadow-2xl border-2 border-brand-yellow/60 group">
+            <div className="will-change-transform will-change-opacity relative mx-auto max-w-md lg:max-w-none rounded-3xl p-3 sm:p-5 bg-white shadow-2xl border-2 border-brand-yellow/60 group">
               {/* Sağ Üstten Taşan Dönen "DOĞAL EL YAPIMI" Rozeti */}
               <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 z-20 pointer-events-none">
                 <motion.div
@@ -244,7 +217,7 @@ export const History: React.FC = () => {
                         d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                       />
                     </defs>
-                    <text className="text-[9.5px] uppercase font-bold tracking-[0.22em] fill-brand-yellow">
+                    <text className="text-[9.5px] uppercase font-bold tracking-[0.24em] fill-brand-yellow">
                       <textPath href="#badgeCirclePath" startOffset="0%">
                         • DOĞAL EL YAPIMI • AHLAT •
                       </textPath>
@@ -312,7 +285,7 @@ export const History: React.FC = () => {
           variants={staggerRowVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {artisanValues.map((val) => {
@@ -325,7 +298,7 @@ export const History: React.FC = () => {
                 variants={fadeUpVariants}
                 whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                className="group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-default"
+                className="will-change-transform will-change-opacity group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-default"
               >
                 {/* Açık turkuaz kutu içindeki ikon (hover durumunda scale: 1.1) */}
                 <div className="w-14 h-14 rounded-xl bg-brand-teal/10 text-brand-teal p-3.5 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shrink-0">
@@ -362,14 +335,14 @@ export const History: React.FC = () => {
           variants={staggerRowVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.1, margin: "100px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {principles.map((ms) => (
             <motion.div
               key={ms.step}
               variants={processStepVariants}
-              className="border-l-2 border-brand-teal pl-4 sm:pl-5 transition-colors duration-200"
+              className="will-change-transform will-change-opacity border-l-2 border-brand-teal pl-4 sm:pl-5 transition-colors duration-200"
             >
               {/* Rozet: Siyah/Lacivert arka plan, sarı metin */}
               <span className="inline-block px-3 py-1 rounded-md text-xs font-bold bg-brand-navy text-brand-yellow mb-3 shadow-sm tracking-wide">
@@ -389,7 +362,7 @@ export const History: React.FC = () => {
           ))}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
