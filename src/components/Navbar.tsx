@@ -30,11 +30,16 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Giriş', href: '#hero' },
     { label: 'Hikayemiz', href: '#hikaye' },
     { label: 'Lezzetler', href: '#menu' },
     { label: 'Konum & İletişim', href: '#konum' },
   ];
+
+  const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -53,7 +58,8 @@ export const Navbar: React.FC = () => {
           {/* Logo & Marka İsmi */}
           <a
             href="#hero"
-            className="flex items-center gap-3 group focus:outline-none"
+            onClick={scrollToTop}
+            className="flex items-center gap-3 group focus:outline-none cursor-pointer"
           >
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-yellow p-1 bg-brand-yellow/90 shrink-0 shadow-md flex items-center justify-center">
               <img
