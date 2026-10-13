@@ -19,7 +19,7 @@ const contactInfo: ContactDetails = {
   district: 'Ahlat',
   city: 'Bitlis',
   workingHours: 'Her gün 10:00 - 23:30',
-  phone: '+90 (434) 712 19 28',
+  phone: '+90 (505) 031 49 69',
   email: 'info@eskiiskeledondurmacisi.com',
   coordinates: {
     lat: 38.7519723,
