@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#efd581" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#efd581" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#efd581"/>
+      <stop offset="100%" stop-color="#d4b455"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle (Seal) -->
+  <circle cx="250" cy="250" r="235" fill="#171630" stroke="#efd581" stroke-width="4"/>
+  <circle cx="250" cy="250" r="225" fill="none" stroke="#efd581" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Vintage Rings -->
+  <circle cx="250" cy="250" r="160" fill="#16a092" stroke="#efd581" stroke-width="2"/>
+
+  <!-- Pier / Waves Art -->
+  <path d="M 150 290 Q 200 280, 250 290 T 350 290" fill="none" stroke="#efd581" stroke-width="3"/>
+  <path d="M 170 305 Q 210 298, 250 305 T 330 305" fill="none" stroke="#efd581" stroke-width="2"/>
+
+  <!-- Stylized Ice Cream Scoop & Cone / Pier Pillar -->
+  <path d="M 235 240 L 250 270 L 265 240 Z" fill="#efd581"/>
+  <circle cx="250" cy="225" r="20" fill="#c82136"/>
+  <circle cx="235" cy="215" r="18" fill="#fafafa"/>
+  <circle cx="265" cy="215" r="18" fill="#efd581"/>
+
+  <!-- Center Typography -->
+  <text x="250" y="115" text-anchor="middle" fill="#efd581" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="bold" letter-spacing="4">ESKİ İSKELE</text>
+  <text x="250" y="150" text-anchor="middle" fill="#fafafa" font-family="'Playfair Display', Georgia, serif" font-size="18" letter-spacing="6">DONDURMACISI</text>
+  
+  <text x="250" y="370" text-anchor="middle" fill="#efd581" font-family="'Playfair Display', Georgia, serif" font-size="44" font-weight="900" letter-spacing="4">1928</text>
+  <text x="250" y="405" text-anchor="middle" fill="#16a092" font-family="sans-serif" font-size="13" font-weight="bold" letter-spacing="5">AHLAT • VAN GÖLÜ</text>
+
+  <!-- Stars -->
+  <polygon points="120,250 123,257 131,257 125,262 127,270 120,265 113,270 115,262 109,257 117,257" fill="#efd581"/>
+  <polygon points="380,250 383,257 391,257 385,262 387,270 380,265 373,270 375,262 369,257 377,257" fill="#efd581"/>
+</svg>
