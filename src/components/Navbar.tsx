@@ -6,18 +6,28 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  // Scroll dinleyicisi: passive: true ile ana iş parçacığı bloklanmaz
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrolled = window.scrollY > 40;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Mobil menü açıkken arka plan kaydırmasını kilitle (lag ve çakışmayı önler)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: 'Giriş', href: '#hero' },
@@ -29,15 +39,15 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-6 lg:px-8 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-[padding] duration-300 px-4 sm:px-6 lg:px-8 ${
           isScrolled ? 'py-3' : 'py-5'
         }`}
       >
         <div
-          className={`max-w-6xl mx-auto rounded-full transition-all duration-300 px-5 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between ${
+          className={`max-w-6xl mx-auto rounded-full transition-colors duration-300 px-5 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between ${
             isScrolled
-              ? 'bg-brand-navy/85 backdrop-blur-md shadow-2xl border border-white/10 text-white'
-              : 'bg-brand-navy/30 backdrop-blur-sm border border-brand-navy/15 text-brand-navy'
+              ? 'bg-brand-navy/90 backdrop-blur-md shadow-2xl border border-white/10 text-white'
+              : 'bg-brand-navy/35 backdrop-blur-sm border border-brand-navy/15 text-brand-navy'
           }`}
         >
           {/* Logo & Marka İsmi */}
@@ -98,7 +108,7 @@ export const Navbar: React.FC = () => {
 
           {/* Mobil Menü Butonu */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Menüyü aç/kapat"
             className={`md:hidden p-2 rounded-full transition-colors ${
               isScrolled
@@ -111,40 +121,57 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobil Açılır Menü */}
+      {/* Mobil Açılır Menü ve GPU Optimize Arka Plan */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-20 z-40 md:hidden bg-brand-navy/95 backdrop-blur-xl border border-brand-yellow/30 rounded-3xl p-6 shadow-2xl text-white"
-          >
-            <div className="flex flex-col space-y-4 text-center">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2.5 text-base font-serif font-bold text-white hover:text-brand-yellow transition-colors border-b border-white/5"
-                >
-                  {link.label}
-                </a>
-              ))}
+          <>
+            {/* Arka plan karartması: Dışarı tıklandığında kapatır (GPU dostu, blur yok) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-40 bg-black/60 md:hidden"
+            />
 
-              <div className="pt-2">
-                <a
-                  href="#konum"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-brand-yellow text-brand-navy font-bold text-sm shadow-lg"
-                >
-                  <PhoneCall className="w-4 h-4 text-brand-red" />
-                  <span>Yol Tarifi & İletişim</span>
-                </a>
+            {/* Menü Kartı:
+                - backdrop-blur kaldırıldı (Mobil GPU rasterization donmasını çözer)
+                - Katı (solid) koyu #171630 arkaplan
+                - will-change-transform ile doğrudan GPU katmanında animasyon
+            */}
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="will-change-transform fixed inset-x-4 top-20 z-50 md:hidden bg-[#171630] border border-brand-yellow/40 rounded-3xl p-6 shadow-2xl text-white"
+            >
+              <div className="flex flex-col space-y-3 text-center">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-2.5 text-base font-serif font-bold text-white hover:text-brand-yellow transition-colors border-b border-white/5 active:bg-white/5 rounded-xl"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+
+                <div className="pt-2">
+                  <a
+                    href="#konum"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-brand-yellow text-brand-navy font-bold text-sm shadow-lg active:scale-95 transition-transform"
+                  >
+                    <PhoneCall className="w-4 h-4 text-brand-red" />
+                    <span>Yol Tarifi & İletişim</span>
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
