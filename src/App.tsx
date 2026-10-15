@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-[100svh] bg-brand-navy text-white selection:bg-brand-yellow selection:text-brand-navy font-sans relative antialiased">
+    <div className="min-h-[100svh] bg-[#fafafa] text-white selection:bg-brand-yellow selection:text-brand-navy font-sans relative antialiased">
       {/* Sabit Cam Efektli Gezinme Çubuğu */}
       <Navbar />
 

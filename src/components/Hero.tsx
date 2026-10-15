@@ -1,27 +1,8 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown, Compass, ChevronRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const heroRef = useRef<HTMLElement>(null);
-
-  // Parallax Scroll Hook
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Parallax: Arka plan göl & iskele resmi scroll edildikçe yavaşça derinleşerek kayar
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.22]);
-
-  // İçerik katmanı scroll edildikçe yumuşakça yükselir ve saydamlaşır
-  const contentY = useTransform(scrollYProgress, [0, 0.8], [0, 50]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
-
-  // Scroll başladığında aşağı kaydırma göstergesi anında kaybolur
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
-
   const scrollToHistory = () => {
     const section = document.getElementById('hikaye');
     if (section) {
@@ -38,18 +19,11 @@ export const Hero: React.FC = () => {
 
   return (
     <section
-      ref={heroRef}
       id="hero"
       className="relative min-h-[100svh] w-full bg-brand-teal flex flex-col justify-between items-center text-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 overflow-hidden select-none isolate"
     >
-      {/* 1. ARKA PLAN VE DERİNLİK (HERO BACKDROP) - Gerçek Van Gölü ve Parallax Efekti */}
-      <motion.div
-        style={{
-          y: backgroundY,
-          scale: backgroundScale,
-        }}
-        className="absolute -top-[20%] -bottom-[20%] -left-[5%] -right-[5%] pointer-events-none will-change-transform"
-      >
+      {/* 1. ARKA PLAN VE DERİNLİK (HERO BACKDROP) - Gerçek Van Gölü */}
+      <div className="absolute inset-0 pointer-events-none">
         <img
           src="/hero-lake-1.png"
           alt="Van Gölü İskelesi Arka Plan"
@@ -58,7 +32,7 @@ export const Hero: React.FC = () => {
           decoding="async"
           className="w-full h-full object-cover"
         />
-      </motion.div>
+      </div>
 
       {/* Marka Turkuazı Gradyan Katmanı - Ferahlık, Derinlik ve Metin Kontrastı */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-teal/80 via-brand-teal/60 to-brand-teal/85 pointer-events-none" />
@@ -104,23 +78,18 @@ export const Hero: React.FC = () => {
       </motion.div>
 
       {/* 3. MERKEZİ İÇERİK ALANI */}
-      <motion.div
-        style={{
-          y: contentY,
-          opacity: contentOpacity,
-        }}
-        className="relative z-10 max-w-5xl mx-auto flex-1 flex flex-col items-center justify-center my-auto py-2 w-full will-change-transform"
-      >
+      <div className="relative z-10 max-w-5xl mx-auto flex-1 flex flex-col items-center justify-center my-auto py-2 w-full">
         {/* Yazı arkası yumuşak kontrast aurası */}
         <div className="absolute -inset-x-4 -inset-y-6 bg-brand-teal/30 md:bg-brand-teal/20 rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-        {/* 2. LOGO: Sabit yükseklikli kapsayıcı ile Layout Shift (CLS) engellendi */}
-        <div className="h-20 md:h-28 flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
-          <div className="relative h-full flex items-center justify-center group">
-            {/* Arkada doğal altın ışıma */}
-            <div className="absolute inset-0 bg-brand-yellow/25 rounded-full blur-xl group-hover:bg-brand-yellow/35 transition-all duration-700 pointer-events-none" />
+        {/* 2. LOGO: Sabit Genişlik & Yükseklik Oranı (Tam Sıfır CLS, Anında WebP) */}
+        <div className="w-[180px] sm:w-[206px] md:w-[240px] aspect-[206/80] flex items-center justify-center mb-3 sm:mb-4 md:mb-6 relative group shrink-0">
+          {/* Arkada doğal altın ışıma */}
+          <div className="absolute inset-0 bg-brand-yellow/25 rounded-full blur-xl pointer-events-none" />
 
-            {/* Şeffaf ve Kutusuz Orijinal Logo */}
+          {/* Şeffaf ve Kutusuz Orijinal Logo */}
+          <picture className="relative z-10 w-full h-full flex items-center justify-center">
+            <source type="image/webp" srcSet="/logo-full-trans.webp" />
             <img
               src="/logo-full-trans.png"
               alt="Eski İskele Dondurmacısı Logosu"
@@ -128,23 +97,14 @@ export const Hero: React.FC = () => {
               height={80}
               loading="eager"
               fetchPriority="high"
-              decoding="async"
-              className="relative z-10 h-full w-auto max-w-[135px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-xs object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
+              decoding="sync"
+              className="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
+          </picture>
         </div>
 
-        {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama */}
-        <motion.div
-          initial={{ opacity: 0.8, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.4,
-            delay: 0.05,
-            ease: 'easeOut',
-          }}
-          className="space-y-3 sm:space-y-4 max-w-4xl lg:max-w-5xl mx-auto px-2"
-        >
+        {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama (Statik - Sıfır Dikey Zıplama) */}
+        <div className="space-y-3 sm:space-y-4 max-w-4xl lg:max-w-5xl mx-auto px-2">
           {/* Üst Rozet Satırı */}
           <div className="flex items-center justify-center gap-2 text-brand-navy/90 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
@@ -152,12 +112,12 @@ export const Hero: React.FC = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
           </div>
 
-          {/* Heybetli Serif Başlık: 2 Satırlı Mimari (Satır 1: Van Gölü Kıyısında / Satır 2: Doğal Serinlik) */}
+          {/* Heybetli Serif Başlık: 2 Satırlı Mimari */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-extrabold md:font-black text-brand-navy tracking-tight leading-[1.12] md:leading-[1.04] drop-shadow-sm">
             <span className="block md:whitespace-nowrap">Van Gölü Kıyısında</span>
             <span className="relative inline-block text-brand-navy mt-1 sm:mt-2.5 whitespace-nowrap isolate">
               <span className="relative z-10">Doğal Serinlik</span>
-              {/* Belirgin, Kalın ve Harflerin (ğ, l) Okunabilirliğini Bozmayan z-[-1] Seviyesinde Kırmızı Fırça Çizgisi */}
+              {/* Belirgin Kırmızı Fırça Çizgisi */}
               <svg
                 className="absolute left-0 -bottom-2.5 sm:-bottom-3 md:-bottom-3.5 w-full h-3.5 sm:h-5 md:h-6 pointer-events-none overflow-visible z-[-1]"
                 viewBox="0 0 400 24"
@@ -165,37 +125,26 @@ export const Hero: React.FC = () => {
                 preserveAspectRatio="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <motion.path
+                <path
                   d="M6 16C75 7 185 4 394 15C310 22 170 19 80 18"
                   stroke="#c82136"
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  initial={{ pathLength: 0.3, opacity: 0.8 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{
-                    pathLength: { duration: 0.5, delay: 0.08, ease: 'easeOut' },
-                    opacity: { duration: 0.2, delay: 0.08 },
-                  }}
                 />
               </svg>
             </span>
           </h1>
 
-          {/* Açıklama Paragrafı: Mobilde en az text-base (16px), px-6 ile ferah satır arası */}
+          {/* Açıklama Paragrafı */}
           <p className="max-w-2xl mx-auto pt-2 sm:pt-3 px-6 sm:px-4 text-brand-navy/95 font-medium sm:font-normal text-base sm:text-lg md:text-xl leading-relaxed drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]">
             Süphan ve Nemrut yaylalarının taze sütü, yüksek dağların yabani salebi ve göl kenarının serinletici esintisiyle...
             Ahlat&apos;ın tarihi iskelesinde katkısız, dürüst ve hakiki dondurma deneyimi.
           </p>
-        </motion.div>
+        </div>
 
-        {/* 3. BUTONLARI DİKLEŞTİR VE BÜYÜT: Mobilde flex-col, w-full, px-6, py-4 */}
-        <motion.div
-          initial={{ opacity: 0.85, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0.08, ease: 'easeOut' }}
-          className="mt-6 sm:mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0"
-        >
+        {/* 3. BUTONLAR: Sabit ve Sıfır Kayma */}
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
           <motion.button
             onClick={scrollToMenu}
             whileHover={{ scale: 1.03 }}
@@ -215,16 +164,11 @@ export const Hero: React.FC = () => {
             <span>Hikayemiz & Felsefemiz</span>
             <ChevronRight className="w-4 h-4 text-brand-navy/70 transform group-hover:translate-x-1 transition-transform duration-200" />
           </motion.button>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* 4. AŞAĞI KAYDIRIN GÖSTERGESİ */}
-      <motion.div
-        style={{
-          opacity: scrollIndicatorOpacity,
-        }}
-        className="relative z-10 pt-6 sm:pt-8 pb-2 sm:pb-4 flex flex-col items-center justify-center shrink-0"
-      >
+      <div className="relative z-10 pt-6 sm:pt-8 pb-2 sm:pb-4 flex flex-col items-center justify-center shrink-0">
         <button
           onClick={scrollToHistory}
           aria-label="Aşağı kaydırarak hikayemizi keşfedin"
@@ -245,7 +189,7 @@ export const Hero: React.FC = () => {
             <ChevronDown className="w-5 h-5 text-brand-yellow" strokeWidth={2.5} />
           </motion.div>
         </button>
-      </motion.div>
+      </div>
     </section>
   );
 };

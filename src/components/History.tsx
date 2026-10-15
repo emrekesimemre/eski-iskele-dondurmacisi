@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { HistoryMilestone, ArtisanValue } from '../types';
 import { Milk, Mountain, Clock, Feather, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -58,9 +57,9 @@ export const History: React.FC = () => {
       className="relative min-h-[100svh] w-full bg-[#fafafa] text-brand-navy py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <span id="history" className="sr-only" />
-      {/* Dekoratif Arka Plan Ahlat Dokusu */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Dekoratif Arka Plan Ahlat Dokusu (GPU Dostu Radyal Gradyan) */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(22,160,146,0.08)_0%,transparent_70%)]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(239,213,129,0.18)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto">
         {/* ============================================================
@@ -126,10 +125,8 @@ export const History: React.FC = () => {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Sağ Üstten Taşan Dönen "DOĞAL EL YAPIMI" Rozeti */}
               <div className="absolute -top-4 -right-4 md:-top-8 md:-right-8 z-20 pointer-events-none">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-                  className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none"
+                <div
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none animate-[spin_20s_linear_infinite]"
                 >
                   {/* Dairesel Dönen Metin */}
                   <svg className="w-full h-full p-1" viewBox="0 0 100 100">
@@ -153,7 +150,7 @@ export const History: React.FC = () => {
                       100%
                     </span>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Görsel Kapsayıcısı */}
