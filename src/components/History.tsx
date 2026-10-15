@@ -139,13 +139,13 @@ export const History: React.FC = () => {
             Zanaat Hikayesi
           </motion.h2>
 
-          {/* 0'dan %100'e Çizilen Turkuaz Alt Çizgi */}
+          {/* 0'dan %100'e Çizilen Turkuaz Alt Çizgi: Tam merkezli, orantılı ve başlığa uyumlu */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, amount: 0.1, margin: "100px" }}
             transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="w-24 sm:w-32 h-1.5 bg-brand-teal mx-auto mt-6 rounded-full origin-left"
+            className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full origin-center"
           />
         </motion.div>
 
@@ -175,24 +175,24 @@ export const History: React.FC = () => {
               Dondurmalarımızda hiçbir katkı maddesi kullanmıyoruz. Sadece yüksek rakımlı Ahlat yaylalarının taze sütü, dağlardan toplanan yabani salep, yerel bahçelerden karadutlar ve meşhur Ahlat cevizi. Göle karşı oturup bir kase dondurma yerken hissettiğiniz o ferahlık, doğallığın ta kendisidir.
             </p>
 
-            {/* İstatistik / Değer Rozetleri */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-brand-navy/10">
-              <div className="text-center p-3 rounded-xl bg-white shadow-sm border border-brand-navy/5">
-                <span className="block text-2xl sm:text-3xl font-serif font-black text-brand-teal">%100</span>
-                <span className="text-xs text-brand-navy/70 uppercase tracking-wider font-semibold">Doğal</span>
+            {/* İstatistik / Değer Rozetleri: mt-10 sm:mt-12 nefes payı ve text-4xl büyük vurgu */}
+            <div className="!mt-10 sm:!mt-12 grid grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-brand-navy/10">
+              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-teal tracking-tight">%100</span>
+                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Doğal</span>
               </div>
-              <div className="text-center p-3 rounded-xl bg-white shadow-sm border border-brand-navy/5">
-                <span className="block text-2xl sm:text-3xl font-serif font-black text-brand-red">Yerel</span>
-                <span className="text-xs text-brand-navy/70 uppercase tracking-wider font-semibold">Ahlat Sütü</span>
+              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-red tracking-tight">Yerel</span>
+                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Ahlat Sütü</span>
               </div>
-              <div className="text-center p-3 rounded-xl bg-white shadow-sm border border-brand-navy/5">
-                <span className="block text-2xl sm:text-3xl font-serif font-black text-brand-navy">Katkısız</span>
-                <span className="text-xs text-brand-navy/70 uppercase tracking-wider font-semibold">Temiz İçerik</span>
+              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-navy tracking-tight">Katkısız</span>
+                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Temiz İçerik</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Sağ Kolon: Parallax Görsel + Dönen "DOĞAL EL YAPIMI" Rozeti */}
+          {/* Sağ Kolon: Kenarlıksız (Edge-to-Edge) Parallax Görsel + Dönen Rozet */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,14 +200,14 @@ export const History: React.FC = () => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 relative"
           >
-            {/* Fotoğraf Çerçeve Container'ı */}
-            <div className="will-change-transform will-change-opacity relative mx-auto max-w-md lg:max-w-none rounded-3xl p-3 sm:p-5 bg-white shadow-2xl border-2 border-brand-yellow/60 group">
+            {/* Doğrudan rounded-2xl ve shadow-2xl görünümlü ana fotoğraf kapsayıcısı */}
+            <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Sağ Üstten Taşan Dönen "DOĞAL EL YAPIMI" Rozeti */}
-              <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 z-20 pointer-events-none">
+              <div className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 z-20 pointer-events-none">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-                  className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none"
+                  className="relative w-22 h-22 sm:w-28 sm:h-28 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none"
                 >
                   {/* Dairesel Dönen Metin */}
                   <svg className="w-full h-full p-1" viewBox="0 0 100 100">
@@ -234,46 +234,44 @@ export const History: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* Parallax Görsel Kapsayıcısı (overflow-hidden rounded-2xl) */}
+              {/* Parallax Görsel Kapsayıcısı: Beyaz kutu ve sarı border kaldırıldı, doğrudan rounded-2xl ve shadow-2xl */}
               <div
                 ref={imageContainerRef}
-                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-brand-navy shadow-inner"
+                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy will-change-transform"
               >
                 <motion.img
-                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-                  alt="Ahlat İskelesi ve Van Gölü Sahil Manzarası"
+                  src="/ahlat-selcuklu.png"
+                  alt="Ahlat Selçuklu Meydan Mezarlığı Mezar Taşları"
                   style={{ y: imageY, scale: imageScale }}
                   className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.95]"
                 />
 
-                {/* Karartma Kaplaması */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-brand-navy/20 to-transparent pointer-events-none" />
+                {/* Yukarıya Doğru Uzatılmış Zengin Karartma Kaplaması */}
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/50 via-45% to-transparent pointer-events-none" />
 
                 {/* Fotoğraf Üzeri Bilgi */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
+                <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex items-end justify-between text-white z-10">
                   <div>
-                    <span className="inline-block text-xs uppercase tracking-widest text-brand-yellow font-semibold">
-                      Ahlat İskelesi &bull; Van Gölü
+                    <span className="inline-block text-xs uppercase tracking-widest text-brand-yellow font-semibold drop-shadow-sm">
+                      Tarihi Ahlat Taşları &bull; Selçuklu Meydan Mezarlığı
                     </span>
-                    <h3 className="font-serif text-lg sm:text-xl font-bold">
-                      Göl Kenarındaki Serinlik Durağı
+                    <h3 className="font-serif text-lg sm:text-2xl font-bold tracking-tight text-white drop-shadow-md mt-0.5">
+                      Kültürel Mirasın Gölgesinde
                     </h3>
                   </div>
-                  <div className="text-right">
-                    <span className="font-serif italic text-sm text-brand-yellow/90">
+                  <div className="text-right shrink-0 ml-3">
+                    <span className="font-serif italic text-xs sm:text-sm text-brand-yellow/90">
                       Ahlat / Bitlis
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Alt Açıklama İpucu */}
-              <div className="mt-4 flex items-center gap-3 px-2 text-xs text-brand-navy/70">
-                <Sparkles className="w-4 h-4 text-brand-red shrink-0" />
-                <span>
-                  Ahlat Selçuklu taşlarının gölgesinde, Van Gölü sodalı suyunun ferahlatıcı melteminde sunulan doğal lezzet.
-                </span>
-              </div>
+              {/* Şık, Gri, İtalik Resim Altı Caption */}
+              <p className="mt-3.5 text-xs sm:text-sm text-brand-navy/60 italic font-serif flex items-center justify-center sm:justify-start gap-2 px-1">
+                <Sparkles className="w-3.5 h-3.5 text-brand-teal shrink-0" />
+                <span>Ahlat Selçuklu taşlarının gölgesinde, Van Gölü esintisiyle sunulan doğal zanaat.</span>
+              </p>
             </div>
           </motion.div>
         </div>

@@ -226,12 +226,9 @@ export const Menu: React.FC = () => {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98, y: 10 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -8 }}
-                  className={`will-change-transform will-change-opacity group relative rounded-3xl bg-white/5 backdrop-blur-sm p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border ${
-                    isFeatured
-                      ? 'md:col-span-2 border-brand-yellow/50 shadow-lg shadow-brand-yellow/5'
-                      : 'border-white/10'
-                  } hover:shadow-[0_0_30px_rgba(22,160,146,0.18)] hover:border-brand-teal/40`}
+                  className={`will-change-transform will-change-opacity group relative rounded-3xl bg-white/5 backdrop-blur-sm p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border border-white/10 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] ${
+                    isFeatured ? 'md:col-span-2' : ''
+                  }`}
                 >
                   <div>
                     {/* Üst Kısım: Resim (h-64 sm:h-72) */}
@@ -243,17 +240,17 @@ export const Menu: React.FC = () => {
                         loading="lazy"
                       />
 
-                      {/* GÖRSEL GEÇİŞİ: Resmin en altına siyaha/laciverte doğru kaybolan gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent pointer-events-none" />
+                      {/* GÖRSEL GEÇİŞİ: Resmin alt %50'sini kapsayan ve metin okunabilirliğini artıran derin gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/85 via-50% to-transparent pointer-events-none" />
 
-                      {/* Resmin Sol Üst Rozeti (Yıldız + Tag / Yeşilimsi Arka Plan) */}
-                      <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-teal/30 backdrop-blur-md text-brand-teal border border-brand-teal/40">
-                        <Star className="w-3.5 h-3.5 text-brand-teal fill-brand-teal" />
+                      {/* Resmin Sol Üst Rozeti: Buzlu Cam (Glassmorphism) Efekti */}
+                      <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-black/30 backdrop-blur-md text-white border border-white/20 shadow-sm">
+                        <Star className="w-3.5 h-3.5 text-brand-yellow fill-brand-yellow" />
                         <span>{item.tag}</span>
                       </div>
 
-                      {/* Resmin Sağ Üst Yazısı (İmza Reçete / Kategori) */}
-                      <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 text-xs text-brand-yellow/90 font-medium px-2.5 py-1 rounded-full bg-brand-navy/70 backdrop-blur-md border border-brand-yellow/20">
+                      {/* Resmin Sağ Üst Yazısı: Buzlu Cam (Glassmorphism) Efekti */}
+                      <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 text-xs text-white/90 font-medium px-2.5 py-1 rounded-full bg-black/30 backdrop-blur-md border border-white/20 shadow-sm">
                         {isFeatured ? (
                           <>
                             <Award className="w-3.5 h-3.5 text-brand-yellow" />
@@ -269,7 +266,7 @@ export const Menu: React.FC = () => {
                         <span className="text-xs uppercase tracking-wider text-brand-yellow font-bold block mb-1">
                           {item.subtitle}
                         </span>
-                        <h3 className="font-serif text-2xl sm:text-3xl font-black text-white group-hover:text-brand-yellow transition-colors duration-300">
+                        <h3 className="font-serif text-2xl sm:text-3xl font-black text-white tracking-tight">
                           {item.title}
                         </h3>
                       </div>

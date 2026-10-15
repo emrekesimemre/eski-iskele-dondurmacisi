@@ -6,6 +6,7 @@ import History from './components/History';
 import Menu from './components/Menu';
 import Location from './components/Location';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   return (
@@ -30,6 +31,9 @@ export const App: React.FC = () => {
 
       {/* Alt Bilgi / Footer */}
       <Footer />
+
+      {/* Akıllı ve Sabit Sayfa Başına Dön Butonu */}
+      <ScrollToTop />
 
       {/* Vercel Web Analytics */}
       <Analytics />

@@ -161,6 +161,25 @@ export const Location: React.FC = () => {
                 </div>
               </div>
 
+              {/* Gerçek Mekan / Dükkan Önizlemesi - Dükkanın altı, cam cephesi ve girişi tam görünür */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[4/5] max-h-[480px] border border-white/10 shadow-lg group isolate bg-brand-navy">
+                <img
+                  src="/ahlat-dukkan.png"
+                  alt="Eski İskele Dondurmacısı Ahlat Sahil Dükkanı"
+                  className="w-full h-full object-cover object-bottom rounded-2xl group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent pointer-events-none" />
+
+                {/* Üst Kısımda Şık Glassmorphism Rozet (Dükkanın altını kapatmaz) */}
+                <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-navy/85 backdrop-blur-md text-white border border-white/20 shadow-md">
+                  <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                  <span className="text-brand-yellow font-bold">İskele Dükkanımız</span>
+                  <span className="text-white/40">&bull;</span>
+                  <span className="text-white/80 text-[11px]">Ahlat Sahili</span>
+                </div>
+              </div>
+
               {/* Göl Esintisi Notu */}
               <div className="flex items-start gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-white/70">
                 <Waves className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
@@ -170,8 +189,8 @@ export const Location: React.FC = () => {
               </div>
             </div>
 
-            {/* Aksiyon Butonları */}
-            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-3">
+            {/* Aksiyon Butonları: mt-6 sm:mt-8 yeterli nefes payı */}
+            <div className="mt-6 sm:mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-3">
               <a
                 href={contactInfo.googleMapsUrl}
                 target="_blank"
@@ -211,7 +230,7 @@ export const Location: React.FC = () => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="will-change-transform will-change-opacity lg:col-span-3 flex flex-col"
           >
-            <div className="relative w-full h-[450px] sm:h-[500px] lg:h-full min-h-[440px] rounded-3xl overflow-hidden border border-white/15 bg-white/5 shadow-2xl group">
+            <div className="relative w-full h-[450px] sm:h-[500px] lg:h-full min-h-[440px] rounded-3xl overflow-hidden border border-white/15 bg-[#131226] shadow-2xl group">
               {/* Harita İçi Nabız Atan Canlı Konum Rozeti */}
               <div className="absolute top-5 left-5 z-10 px-4 py-2.5 rounded-2xl bg-brand-navy/90 backdrop-blur-md border border-brand-yellow/50 text-white shadow-xl flex items-center gap-2.5 pointer-events-none">
                 <span className="relative flex h-3 w-3">
@@ -223,13 +242,13 @@ export const Location: React.FC = () => {
                 </span>
               </div>
 
-              {/* Google Maps Embed Iframe */}
+              {/* Google Maps Embed Iframe - Dark Theme CSS Filters */}
               <iframe
                 title="Eski İskele Dondurmacısı Google Haritası"
                 src={mapEmbedUrl}
                 width="100%"
                 height="100%"
-                className="w-full h-full min-h-[440px] border-0 filter contrast-[1.05] brightness-[0.95]"
+                className="w-full h-full min-h-[440px] border-0 filter grayscale-[20%] invert-[90%] hue-rotate-[180deg] contrast-[85%] opacity-90"
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

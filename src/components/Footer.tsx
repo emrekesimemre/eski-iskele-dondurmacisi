@@ -1,18 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, ArrowUp } from 'lucide-react';
+import { Compass } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="w-full bg-[#131226] text-white/80 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative overflow-hidden">
       {/* Arka plan ışık vurgusu */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-brand-teal/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto flex flex-col items-center justify-between gap-10 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-between relative z-10">
         {/* Ortalanmış Yapı: Logo, Başlık, Alıntı */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -21,12 +17,12 @@ export const Footer: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center text-center max-w-xl"
         >
-          {/* Yuvarlak hatlı kart içindeki marka logosu */}
-          <div className="px-6 py-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xl mb-5 flex items-center justify-center hover:border-brand-teal/30 transition-colors">
+          {/* 1. LOGO KUTUSUNU TEMİZLE: Şeffaf, kutusuz ve koyu lacivert zeminle bütünleşen logo */}
+          <div className="mb-4 flex items-center justify-center bg-transparent border-none shadow-none">
             <img
               src="/logo-full-trans.png"
               alt="Eski İskele Dondurmacısı"
-              className="h-12 sm:h-14 w-auto object-contain"
+              className="h-14 sm:h-16 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
             />
           </div>
 
@@ -44,16 +40,16 @@ export const Footer: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Yatay Navigasyon Linkleri */}
+        {/* 2 & 4. YATAY NAVİGASYON LİNKLERİ: 'Giriş' yerine 'Ana Sayfa' ve ferah mt-8 / mb-8 boşlukları */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1, margin: "100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/75"
+          className="mt-8 mb-8 flex flex-wrap items-center justify-center gap-4 sm:gap-7 text-sm sm:text-base text-white/75"
         >
           <a href="#hero" className="hover:text-brand-yellow transition-colors font-medium">
-            Giriş
+            Ana Sayfa
           </a>
           <span className="text-brand-teal font-bold">&bull;</span>
           <a href="#hikaye" className="hover:text-brand-yellow transition-colors font-medium">
@@ -70,7 +66,7 @@ export const Footer: React.FC = () => {
         </motion.div>
 
         {/* Ayırıcı İnce Çizgi */}
-        <div className="w-full border-t border-white/10" />
+        <div className="w-full border-t border-white/10 mb-6" />
 
         {/* En Alt Satır (Bottom Bar) */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
@@ -79,22 +75,12 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} Eski İskele Dondurmacısı. Tüm hakları saklıdır.
           </p>
 
-          {/* Sağ: Koordinat Bilgisi & Yukarı Çık Butonu */}
+          {/* Sağ: Koordinat Bilgisi */}
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-white/70 font-mono">
               <Compass className="w-4 h-4 text-brand-red shrink-0" />
               <span>38.7520° K, 42.4980° D</span>
             </span>
-
-            {/* Yukarı Çık Butonu (Hover'da turkuaz) */}
-            <button
-              onClick={scrollToTop}
-              className="p-2.5 rounded-full bg-white/5 hover:bg-brand-teal hover:text-brand-navy hover:border-brand-teal text-white transition-all duration-300 border border-white/10 shadow-md group"
-              title="Yukarı Çık"
-              aria-label="Sayfanın en başına dön"
-            >
-              <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
           </div>
         </div>
       </div>
