@@ -176,18 +176,18 @@ export const History: React.FC = () => {
             </p>
 
             {/* İstatistik / Değer Rozetleri: mt-10 sm:mt-12 nefes payı ve text-4xl büyük vurgu */}
-            <div className="!mt-10 sm:!mt-12 grid grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-brand-navy/10">
-              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
-                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-teal tracking-tight">%100</span>
-                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Doğal</span>
+            <div className="!mt-10 sm:!mt-12 grid grid-cols-3 gap-2 sm:gap-4 pt-6 border-t border-brand-navy/10">
+              <div className="text-center px-2 py-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-brand-teal tracking-tight">%100</span>
+                <span className="block text-[10px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Doğal</span>
               </div>
-              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
-                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-red tracking-tight">Yerel</span>
-                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Ahlat Sütü</span>
+              <div className="text-center px-2 py-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-brand-red tracking-tight">Yerel</span>
+                <span className="block text-[10px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Ahlat Sütü</span>
               </div>
-              <div className="text-center p-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
-                <span className="block text-3xl sm:text-4xl font-serif font-black text-brand-navy tracking-tight">Katkısız</span>
-                <span className="block text-[11px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Temiz İçerik</span>
+              <div className="text-center px-2 py-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
+                <span className="block text-xl min-[380px]:text-[22px] min-[420px]:text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-brand-navy tracking-tight whitespace-nowrap">Katkısız</span>
+                <span className="block text-[10px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Temiz İçerik</span>
               </div>
             </div>
           </motion.div>
@@ -203,11 +203,11 @@ export const History: React.FC = () => {
             {/* Doğrudan rounded-2xl ve shadow-2xl görünümlü ana fotoğraf kapsayıcısı */}
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Sağ Üstten Taşan Dönen "DOĞAL EL YAPIMI" Rozeti */}
-              <div className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 z-20 pointer-events-none">
+              <div className="absolute -top-4 -right-4 md:-top-8 md:-right-8 z-20 pointer-events-none">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-                  className="relative w-22 h-22 sm:w-28 sm:h-28 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none"
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-brand-navy border-2 border-brand-yellow shadow-2xl flex items-center justify-center select-none"
                 >
                   {/* Dairesel Dönen Metin */}
                   <svg className="w-full h-full p-1" viewBox="0 0 100 100">
@@ -217,7 +217,7 @@ export const History: React.FC = () => {
                         d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                       />
                     </defs>
-                    <text className="text-[9.5px] uppercase font-bold tracking-[0.24em] fill-brand-yellow">
+                    <text fontSize="9.2" className="uppercase font-bold tracking-[0.24em] fill-brand-yellow">
                       <textPath href="#badgeCirclePath" startOffset="0%">
                         • DOĞAL EL YAPIMI • AHLAT •
                       </textPath>
@@ -225,9 +225,9 @@ export const History: React.FC = () => {
                   </svg>
 
                   {/* Rozet Merkezi Süsü */}
-                  <div className="absolute inset-0 m-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-dashed border-brand-yellow/60 flex flex-col items-center justify-center text-brand-yellow">
-                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-brand-teal" />
-                    <span className="text-[7px] sm:text-[8px] font-black tracking-widest text-brand-yellow">
+                  <div className="absolute inset-0 m-auto w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full border border-dashed border-brand-yellow/60 flex flex-col items-center justify-center text-brand-yellow">
+                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-brand-teal" />
+                    <span className="text-[7px] sm:text-[8px] md:text-[10px] font-black tracking-widest text-brand-yellow">
                       100%
                     </span>
                   </div>
