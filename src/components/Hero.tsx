@@ -114,29 +114,25 @@ export const Hero: React.FC = () => {
         {/* Yazı arkası yumuşak kontrast aurası */}
         <div className="absolute -inset-x-4 -inset-y-6 bg-brand-teal/30 md:bg-brand-teal/20 rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-        {/* 2. LOGO: Mobilde çok daha kompakt (max-w-[135px] md:max-w-xs), dikey boşluğu dengeli */}
-        <motion.div
-          initial={{ opacity: 0.9, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.35,
-            ease: 'easeOut',
-          }}
-          className="relative mb-3 sm:mb-4 md:mb-6 flex items-center justify-center group"
-        >
-          {/* Arkada doğal altın ışıma */}
-          <div className="absolute inset-0 bg-brand-yellow/25 rounded-full blur-xl group-hover:bg-brand-yellow/35 transition-all duration-700 pointer-events-none" />
+        {/* 2. LOGO: Sabit yükseklikli kapsayıcı ile Layout Shift (CLS) engellendi */}
+        <div className="h-20 md:h-28 flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+          <div className="relative h-full flex items-center justify-center group">
+            {/* Arkada doğal altın ışıma */}
+            <div className="absolute inset-0 bg-brand-yellow/25 rounded-full blur-xl group-hover:bg-brand-yellow/35 transition-all duration-700 pointer-events-none" />
 
-          {/* Şeffaf ve Kutusuz Orijinal Logo */}
-          <img
-            src="/logo-full-trans.png"
-            alt="Eski İskele Dondurmacısı Logosu"
-            className="relative z-10 max-w-[135px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-xs w-auto h-auto object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </motion.div>
+            {/* Şeffaf ve Kutusuz Orijinal Logo */}
+            <img
+              src="/logo-full-trans.png"
+              alt="Eski İskele Dondurmacısı Logosu"
+              width={206}
+              height={80}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="relative z-10 h-full w-auto max-w-[135px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-xs object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
 
         {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama */}
         <motion.div

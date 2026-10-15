@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { HistoryMilestone, ArtisanValue } from '../types';
 import { Milk, Mountain, Clock, Feather, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -51,42 +51,6 @@ const artisanValues: ArtisanValue[] = [
   },
 ];
 
-// Kapsayıcılar her zaman %100 opaktır; alt öğeler hafifçe canlanır
-const staggerRowVariants: Variants = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.02,
-    },
-  },
-};
-
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0.4, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const processStepVariants: Variants = {
-  hidden: { opacity: 0.4, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
 export const History: React.FC = () => {
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -112,56 +76,32 @@ export const History: React.FC = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* ============================================================
-            1. BÖLÜM: BAŞLIK & ÜST BÖLÜM
+            1. BÖLÜM: BAŞLIK & ÜST BÖLÜM (Statik HTML - Asla Gecikmez)
         ============================================================ */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-          variants={staggerRowVariants}
-          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
-        >
-          <motion.div
-            variants={fadeUpVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy/5 text-brand-navy text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-navy/10"
-          >
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy/5 text-brand-navy text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-navy/10">
             <Feather className="w-3.5 h-3.5 text-brand-red" />
             <span>Felsefemiz & Hikayemiz</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={fadeUpVariants}
-            className="text-3xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-brand-navy leading-tight"
-          >
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-brand-navy leading-tight">
             Van Gölü&apos;nün Kıyısında, <br />
             <span className="text-brand-red font-serif italic font-normal">
               Gerçek Bir
             </span>{' '}
             Zanaat Hikayesi
-          </motion.h2>
+          </h2>
 
-          {/* 0'dan %100'e Çizilen Turkuaz Alt Çizgi: Tam merkezli, orantılı ve başlığa uyumlu */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full origin-center"
-          />
-        </motion.div>
+          {/* Turkuaz Alt Çizgi */}
+          <div className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full" />
+        </div>
 
         {/* ============================================================
-            2. BÖLÜM: HİKAYE METNİ VE PARALLAX GÖRSEL
+            2. BÖLÜM: HİKAYE METNİ VE PARALLAX GÖRSEL (Statik Grid)
         ============================================================ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           {/* Sol Kolon: Editoryal Anlatı & Rozetler */}
-          <motion.div
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="will-change-transform will-change-opacity lg:col-span-6 space-y-6 text-base sm:text-lg leading-relaxed text-brand-navy/85"
-          >
+          <div className="lg:col-span-6 space-y-6 text-base sm:text-lg leading-relaxed text-brand-navy/85">
             <div className="p-5 sm:p-7 rounded-2xl bg-white border-l-4 border-brand-teal shadow-md">
               <p className="font-serif italic text-lg sm:text-xl text-brand-navy leading-relaxed">
                 &ldquo;Ahlat&apos;ın tarihi dokusuyla harmanlanmış, göl kenarındaki o eski iskelede başlayan serüvenimiz; katkısız, dürüst ve yerel malzemelerle aynı doğallıkla devam ediyor.&rdquo;
@@ -176,7 +116,7 @@ export const History: React.FC = () => {
               Dondurmalarımızda hiçbir katkı maddesi kullanmıyoruz. Sadece yüksek rakımlı Ahlat yaylalarının taze sütü, dağlardan toplanan yabani salep, yerel bahçelerden karadutlar ve meşhur Ahlat cevizi. Göle karşı oturup bir kase dondurma yerken hissettiğiniz o ferahlık, doğallığın ta kendisidir.
             </p>
 
-            {/* İstatistik / Değer Rozetleri: mt-10 sm:mt-12 nefes payı ve text-4xl büyük vurgu */}
+            {/* İstatistik / Değer Rozetleri */}
             <div className="!mt-10 sm:!mt-12 grid grid-cols-3 gap-2 sm:gap-4 pt-6 border-t border-brand-navy/10">
               <div className="text-center px-2 py-3.5 sm:p-5 rounded-2xl bg-white shadow-md border border-brand-navy/5 hover:shadow-lg transition-shadow">
                 <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-brand-teal tracking-tight">%100</span>
@@ -191,17 +131,10 @@ export const History: React.FC = () => {
                 <span className="block text-[10px] sm:text-xs text-brand-navy/70 uppercase tracking-wider font-semibold mt-1">Temiz İçerik</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Sağ Kolon: Kenarlıksız (Edge-to-Edge) Parallax Görsel + Dönen Rozet */}
-          <motion.div
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative"
-          >
-            {/* Doğrudan rounded-2xl ve shadow-2xl görünümlü ana fotoğraf kapsayıcısı */}
+          {/* Sağ Kolon: Kenarlıksız Parallax Görsel + Dönen Rozet */}
+          <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Sağ Üstten Taşan Dönen "DOĞAL EL YAPIMI" Rozeti */}
               <div className="absolute -top-4 -right-4 md:-top-8 md:-right-8 z-20 pointer-events-none">
@@ -235,7 +168,7 @@ export const History: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* Parallax Görsel Kapsayıcısı: Beyaz kutu ve sarı border kaldırıldı, doğrudan rounded-2xl ve shadow-2xl */}
+              {/* Parallax Görsel Kapsayıcısı */}
               <div
                 ref={imageContainerRef}
                 className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy will-change-transform"
@@ -274,42 +207,33 @@ export const History: React.FC = () => {
                 <span>Ahlat Selçuklu taşlarının gölgesinde, Van Gölü esintisiyle sunulan doğal zanaat.</span>
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ============================================================
             3. BÖLÜM: ORTA BÖLÜM (ÜÇLÜ ÖZELLİK KARTLARI)
         ============================================================ */}
-        <motion.div
-          variants={staggerRowVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {artisanValues.map((val) => {
             const IconComponent =
               val.icon === 'Milk' ? Milk : val.icon === 'Mountain' ? Mountain : Clock;
 
             return (
-              <motion.div
+              <div
                 key={val.title}
-                variants={fadeUpVariants}
-                whileHover={{ y: -8 }}
-                transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                className="will-change-transform will-change-opacity group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-default"
+                className="group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-default"
               >
-                {/* Açık turkuaz kutu içindeki ikon (hover durumunda scale: 1.1) */}
+                {/* Açık turkuaz kutu içindeki ikon */}
                 <div className="w-14 h-14 rounded-xl bg-brand-teal/10 text-brand-teal p-3.5 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shrink-0">
                   <IconComponent className="w-7 h-7" />
                 </div>
 
-                {/* Üst Başlık (text-brand-red) */}
+                {/* Üst Başlık */}
                 <span className="text-xs uppercase font-bold tracking-wider text-brand-red block mb-1">
                   {val.subtitle}
                 </span>
 
-                {/* Başlık (Serif) */}
+                {/* Başlık */}
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-brand-navy mb-3">
                   {val.title}
                 </h3>
@@ -318,32 +242,23 @@ export const History: React.FC = () => {
                 <p className="text-sm sm:text-base text-brand-navy/75 leading-relaxed mt-auto">
                   {val.description}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* ============================================================
             4. BÖLÜM: ALT BÖLÜM (DEĞERLER / SÜREÇ ADIMLARI)
         ============================================================ */}
-        {/* Yatay Ayırıcı Çizgi */}
         <div className="border-t border-brand-navy/10 my-16" />
 
-        {/* 3 Kolonlu Grid Süreç Blokları */}
-        <motion.div
-          variants={staggerRowVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {principles.map((ms) => (
-            <motion.div
+            <div
               key={ms.step}
-              variants={processStepVariants}
-              className="will-change-transform will-change-opacity border-l-2 border-brand-teal pl-4 sm:pl-5 transition-colors duration-200"
+              className="border-l-2 border-brand-teal pl-4 sm:pl-5 transition-colors duration-200"
             >
-              {/* Rozet: Siyah/Lacivert arka plan, sarı metin */}
+              {/* Rozet */}
               <span className="inline-block px-3 py-1 rounded-md text-xs font-bold bg-brand-navy text-brand-yellow mb-3 shadow-sm tracking-wide">
                 {ms.badge} &bull; {ms.step}
               </span>
@@ -357,9 +272,9 @@ export const History: React.FC = () => {
               <p className="text-sm sm:text-base text-brand-navy/70 leading-relaxed">
                 {ms.description}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
