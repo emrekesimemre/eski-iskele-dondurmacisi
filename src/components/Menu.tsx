@@ -143,10 +143,10 @@ export const Menu: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           {/* Hap (Pill) Rozet: Teal border ve yazı */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0.6, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4"
           >
             <Star className="w-3.5 h-3.5 text-brand-teal fill-brand-teal" />
@@ -155,10 +155,10 @@ export const Menu: React.FC = () => {
 
           {/* Başlık: Beyaz Serif + Brand-Yellow İtalik Serif */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.6, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.4, delay: 0.05 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white mb-6"
           >
             Özenle Hazırlanan <br />
@@ -167,10 +167,10 @@ export const Menu: React.FC = () => {
 
           {/* İnce gri/beyaz açıklama metni */}
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0.6, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.4, delay: 0.08 }}
             className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed"
           >
             Tüm dondurmalarımızda sadece Ahlat yaylalarının taze sütü, yüksek dağların yabani salebi ve mevsiminde toplanan doğal meyveler kullanılır. Asla glikoz şurubu veya renklendirici içermez.
@@ -178,10 +178,10 @@ export const Menu: React.FC = () => {
 
           {/* Filtre Butonları */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0.8, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.35, delay: 0.1 }}
             className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10"
           >
             {(['Tümü', 'Klasik', 'Mevsimlik', 'Özel Reçete'] as CategoryFilter[]).map((category) => {
@@ -211,7 +211,7 @@ export const Menu: React.FC = () => {
           variants={gridContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">

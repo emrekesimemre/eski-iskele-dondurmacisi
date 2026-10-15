@@ -11,10 +11,10 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-between relative z-10">
         {/* Ortalanmış Yapı: Logo, Başlık, Alıntı */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0.6, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col items-center text-center max-w-xl"
         >
           {/* 1. LOGO KUTUSUNU TEMİZLE: Şeffaf, kutusuz ve koyu lacivert zeminle bütünleşen logo */}
@@ -42,10 +42,10 @@ export const Footer: React.FC = () => {
 
         {/* 2 & 4. YATAY NAVİGASYON LİNKLERİ: 'Giriş' yerine 'Ana Sayfa' ve ferah mt-8 / mb-8 boşlukları */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0.6, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+          transition={{ duration: 0.4, delay: 0.05 }}
           className="mt-8 mb-8 flex flex-wrap items-center justify-center gap-4 sm:gap-7 text-sm sm:text-base text-white/75"
         >
           <a href="#hero" className="hover:text-brand-yellow transition-colors font-medium">

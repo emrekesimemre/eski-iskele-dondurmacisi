@@ -19,8 +19,8 @@ export const Hero: React.FC = () => {
   const contentY = useTransform(scrollYProgress, [0, 0.8], [0, 50]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
-  // Scroll başladığında aşağı kaydırma göstergesi hızla kaybolur
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+  // Scroll başladığında aşağı kaydırma göstergesi anında kaybolur
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
   const scrollToHistory = () => {
     const section = document.getElementById('hikaye');
@@ -40,17 +40,25 @@ export const Hero: React.FC = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative min-h-[100dvh] w-full bg-brand-teal flex flex-col justify-between items-center text-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-brand-teal flex flex-col justify-between items-center text-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 overflow-hidden select-none isolate"
     >
       {/* 1. ARKA PLAN VE DERİNLİK (HERO BACKDROP) - Gerçek Van Gölü ve Parallax Efekti */}
       <motion.div
         style={{
           y: backgroundY,
           scale: backgroundScale,
-          backgroundImage: `url('/hero-lake-1.png')`,
         }}
-        className="absolute -top-[20%] -bottom-[20%] -left-[5%] -right-[5%] bg-cover bg-center bg-no-repeat pointer-events-none will-change-transform"
-      />
+        className="absolute -top-[20%] -bottom-[20%] -left-[5%] -right-[5%] pointer-events-none will-change-transform"
+      >
+        <img
+          src="/hero-lake-1.png"
+          alt="Van Gölü İskelesi Arka Plan"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
 
       {/* Marka Turkuazı Gradyan Katmanı - Ferahlık, Derinlik ve Metin Kontrastı */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-teal/80 via-brand-teal/60 to-brand-teal/85 pointer-events-none" />
@@ -108,13 +116,11 @@ export const Hero: React.FC = () => {
 
         {/* 2. LOGO: Mobilde çok daha kompakt (max-w-[135px] md:max-w-xs), dikey boşluğu dengeli */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          initial={{ opacity: 0.9, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-            type: 'spring',
-            stiffness: 110,
-            damping: 14,
-            duration: 1,
+            duration: 0.35,
+            ease: 'easeOut',
           }}
           className="relative mb-3 sm:mb-4 md:mb-6 flex items-center justify-center group"
         >
@@ -127,17 +133,19 @@ export const Hero: React.FC = () => {
             alt="Eski İskele Dondurmacısı Logosu"
             className="relative z-10 max-w-[135px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-xs w-auto h-auto object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </motion.div>
 
         {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0.8, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
-            delay: 0.15,
-            ease: [0.21, 1.02, 0.49, 0.99],
+            duration: 0.4,
+            delay: 0.05,
+            ease: 'easeOut',
           }}
           className="space-y-3 sm:space-y-4 max-w-4xl lg:max-w-5xl mx-auto px-2"
         >
@@ -167,11 +175,11 @@ export const Hero: React.FC = () => {
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
+                  initial={{ pathLength: 0.3, opacity: 0.8 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{
-                    pathLength: { duration: 1.1, delay: 1.2, ease: 'easeInOut' },
-                    opacity: { duration: 0.2, delay: 1.2 },
+                    pathLength: { duration: 0.5, delay: 0.08, ease: 'easeOut' },
+                    opacity: { duration: 0.2, delay: 0.08 },
                   }}
                 />
               </svg>
@@ -187,9 +195,9 @@ export const Hero: React.FC = () => {
 
         {/* 3. BUTONLARI DİKLEŞTİR VE BÜYÜT: Mobilde flex-col, w-full, px-6, py-4 */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0.85, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
+          transition={{ duration: 0.35, delay: 0.08, ease: 'easeOut' }}
           className="mt-6 sm:mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0"
         >
           <motion.button

@@ -63,10 +63,15 @@ export const Navbar: React.FC = () => {
             onClick={scrollToTop}
             className="flex items-center gap-3 group focus:outline-none cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-yellow p-1 bg-brand-yellow/90 shrink-0 shadow-md flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-yellow p-1 bg-brand-yellow shrink-0 shadow-md flex items-center justify-center">
               <img
                 src="/logo-emblem-trans.png"
                 alt="Eski İskele Dondurmacısı Logosu"
+                width={36}
+                height={36}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-contain"
               />
             </div>

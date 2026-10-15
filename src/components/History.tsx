@@ -51,37 +51,37 @@ const artisanValues: ArtisanValue[] = [
   },
 ];
 
-// GPU Dostu, Düşük Y Eksenli Varyantlar (Layout Shift'i Önler)
+// Kapsayıcılar her zaman %100 opaktır; alt öğeler hafifçe canlanır
 const staggerRowVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.02,
     },
   },
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0.4, y: 12 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
       ease: [0.16, 1, 0.3, 1],
     },
   },
 };
 
 const processStepVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0.4, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -105,6 +105,7 @@ export const History: React.FC = () => {
       id="hikaye"
       className="relative w-full bg-[#fafafa] text-brand-navy py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
+      <span id="history" className="sr-only" />
       {/* Dekoratif Arka Plan Ahlat Dokusu */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/15 rounded-full blur-3xl pointer-events-none" />
@@ -116,7 +117,7 @@ export const History: React.FC = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
           variants={staggerRowVariants}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
         >
@@ -143,8 +144,8 @@ export const History: React.FC = () => {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full origin-center"
           />
         </motion.div>
@@ -155,10 +156,10 @@ export const History: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           {/* Sol Kolon: Editoryal Anlatı & Rozetler */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0.6, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="will-change-transform will-change-opacity lg:col-span-6 space-y-6 text-base sm:text-lg leading-relaxed text-brand-navy/85"
           >
             <div className="p-5 sm:p-7 rounded-2xl bg-white border-l-4 border-brand-teal shadow-md">
@@ -194,10 +195,10 @@ export const History: React.FC = () => {
 
           {/* Sağ Kolon: Kenarlıksız (Edge-to-Edge) Parallax Görsel + Dönen Rozet */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0.6, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "100px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 relative"
           >
             {/* Doğrudan rounded-2xl ve shadow-2xl görünümlü ana fotoğraf kapsayıcısı */}
@@ -283,7 +284,7 @@ export const History: React.FC = () => {
           variants={staggerRowVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {artisanValues.map((val) => {
@@ -333,7 +334,7 @@ export const History: React.FC = () => {
           variants={staggerRowVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1, margin: "100px" }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {principles.map((ms) => (

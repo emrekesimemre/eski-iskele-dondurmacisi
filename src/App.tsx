@@ -10,13 +10,13 @@ import ScrollToTop from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-brand-navy text-white selection:bg-brand-yellow selection:text-brand-navy font-sans relative antialiased">
+    <div className="min-h-[100svh] bg-brand-navy text-white selection:bg-brand-yellow selection:text-brand-navy font-sans relative antialiased">
       {/* Sabit Cam Efektli Gezinme Çubuğu */}
       <Navbar />
 
       {/* Ana Bölümler */}
       <main>
-        {/* 1. Giriş Bölümü: Hero (min-h-screen, bg-brand-teal, Framer Motion fade-up & spring logo, bounce arrow) */}
+        {/* 1. Giriş Bölümü: Hero (min-h-[100svh], bg-brand-teal, Framer Motion fade-up & spring logo, bounce arrow) */}
         <Hero />
 
         {/* 2. Hikayemiz Bölümü: History (bg-[#fafafa], text-brand-navy, whileInView slide-in, useScroll parallax) */}
