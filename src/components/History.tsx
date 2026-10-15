@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { HistoryMilestone, ArtisanValue } from '../types';
 import { Milk, Mountain, Clock, Feather, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -52,22 +52,10 @@ const artisanValues: ArtisanValue[] = [
 ];
 
 export const History: React.FC = () => {
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-
-  // Görsel için Parallax Scroll Hook
-  const { scrollYProgress } = useScroll({
-    target: imageContainerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Parallax Y kaydırma ve Scale efekti (GPU dostu hafif değerler)
-  const imageY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.0]);
-
   return (
     <section
       id="hikaye"
-      className="relative w-full bg-[#fafafa] text-brand-navy py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-[100svh] w-full bg-[#fafafa] text-brand-navy py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <span id="history" className="sr-only" />
       {/* Dekoratif Arka Plan Ahlat Dokusu */}
@@ -152,7 +140,7 @@ export const History: React.FC = () => {
                       />
                     </defs>
                     <text fontSize="9.2" className="uppercase font-bold tracking-[0.24em] fill-brand-yellow">
-                      <textPath href="#badgeCirclePath" startOffset="0%">
+                      <textPath href="#badgeCirclePath" xlinkHref="#badgeCirclePath" startOffset="0%">
                         • DOĞAL EL YAPIMI • AHLAT •
                       </textPath>
                     </text>
@@ -168,15 +156,15 @@ export const History: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* Parallax Görsel Kapsayıcısı */}
+              {/* Görsel Kapsayıcısı */}
               <div
-                ref={imageContainerRef}
-                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy will-change-transform"
+                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy/10"
               >
-                <motion.img
+                <img
                   src="/ahlat-selcuklu.png"
                   alt="Ahlat Selçuklu Meydan Mezarlığı Mezar Taşları"
-                  style={{ y: imageY, scale: imageScale }}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.95]"
                 />
 

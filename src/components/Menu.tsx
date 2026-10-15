@@ -143,10 +143,7 @@ export const Menu: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           {/* Hap (Pill) Rozet: Teal border ve yazı */}
           <motion.div
-            initial={{ opacity: 0.6, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4"
           >
             <Star className="w-3.5 h-3.5 text-brand-teal fill-brand-teal" />
@@ -155,10 +152,7 @@ export const Menu: React.FC = () => {
 
           {/* Başlık: Beyaz Serif + Brand-Yellow İtalik Serif */}
           <motion.h2
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4, delay: 0.05 }}
+            initial={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white mb-6"
           >
             Özenle Hazırlanan <br />
@@ -167,7 +161,7 @@ export const Menu: React.FC = () => {
 
           {/* İnce gri/beyaz açıklama metni */}
           <motion.p
-            initial={{ opacity: 0.6, y: 12 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
             transition={{ duration: 0.4, delay: 0.08 }}
@@ -222,7 +216,7 @@ export const Menu: React.FC = () => {
                 <motion.article
                   layout
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.98, y: 20 }}
+                  initial={{ opacity: 1, scale: 1, y: 0 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98, y: 10 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
