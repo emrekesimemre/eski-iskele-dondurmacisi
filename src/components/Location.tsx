@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   MapPin,
   Clock,
@@ -46,63 +45,39 @@ export const Location: React.FC = () => {
       id="konum"
       className="relative w-full bg-brand-navy text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden border-t border-brand-teal/20"
     >
-      {/* Arka plan atmosferik parlamalar */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-teal/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-80 h-80 bg-brand-yellow/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Arka plan atmosferik parlamalar (GPU dostu radyal gradyanlar) */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 [background:radial-gradient(circle,rgba(22,160,146,0.12)_0%,transparent_70%)] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-80 h-80 [background:radial-gradient(circle,rgba(239,213,129,0.1)_0%,transparent_70%)] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ============================================================
-            ÜST BAŞLIK (HEADER)
+            ÜST BAŞLIK (HEADER) - Statik & Her Zaman Görünür
         ============================================================ */}
         <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
           {/* Hap (Pill) Rozet: Pusula ikonu + ZİYARET & ULAŞIM */}
-          <motion.div
-            initial={{ opacity: 0.6, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-teal/15 text-brand-teal text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-teal/30"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-teal/15 text-brand-teal text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-teal/30">
             <Compass className="w-3.5 h-3.5 text-brand-teal" />
             <span>ZİYARET & ULAŞIM</span>
-          </motion.div>
+          </div>
 
           {/* Büyük Font-Serif Beyaz + İtalik Turkuaz Başlık */}
-          <motion.h2
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4, delay: 0.05 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white leading-tight"
-          >
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white leading-tight">
             Göl Kenarında <br />
             <span className="text-brand-teal font-serif italic">Bizi Ziyaret Edin</span>
-          </motion.h2>
+          </h2>
 
           {/* Açık gri/beyaz açıklama metni */}
-          <motion.p
-            initial={{ opacity: 0.6, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4, delay: 0.08 }}
-            className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light"
-          >
+          <p className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light">
             Van Gölü&apos;nün serinletici kıyısında, tarihi Ahlat İskelesi&apos;nin hemen yanı başında taze dövme dondurmamızla sizleri bekliyoruz.
-          </motion.p>
+          </p>
         </div>
 
         {/* ============================================================
-            ASİMETRİK GRID (Sol 2 Kolon, Sağ 3 Kolon)
+            ASİMETRİK GRID (Sol 2 Kolon, Sağ 3 Kolon) - Statik
         ============================================================ */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
           {/* Sol Kart: İletişim Bilgileri (2 Kolon) */}
-          <motion.div
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="will-change-transform will-change-opacity lg:col-span-2 flex flex-col justify-between space-y-7 p-7 sm:p-9 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl"
-          >
+          <div className="lg:col-span-2 flex flex-col justify-between space-y-7 p-7 sm:p-9 rounded-3xl bg-white/5 border border-white/10 shadow-2xl">
             <div className="space-y-6">
               {/* Lokasyon Üst Başlık & Marka */}
               <div className="space-y-2">
@@ -220,16 +195,10 @@ export const Location: React.FC = () => {
                 )}
               </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Sağ Kart: Google Maps Haritası (3 Kolon) */}
-          <motion.div
-            initial={{ opacity: 0.6, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="will-change-transform will-change-opacity lg:col-span-3 flex flex-col"
-          >
+          <div className="lg:col-span-3 flex flex-col">
             <div className="relative w-full h-[450px] sm:h-[500px] lg:h-full min-h-[440px] rounded-3xl overflow-hidden border border-white/15 bg-[#131226] shadow-2xl group">
               {/* Harita İçi Nabız Atan Canlı Konum Rozeti */}
               <div className="absolute top-5 left-5 z-10 px-4 py-2.5 rounded-2xl bg-brand-navy/90 backdrop-blur-md border border-brand-yellow/50 text-white shadow-xl flex items-center gap-2.5 pointer-events-none">
@@ -259,7 +228,7 @@ export const Location: React.FC = () => {
                 <span>38.7520° K, 42.4980° D</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

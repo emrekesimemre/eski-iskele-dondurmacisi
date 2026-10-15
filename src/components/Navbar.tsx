@@ -64,19 +64,16 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 group focus:outline-none cursor-pointer"
           >
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-yellow p-1 bg-brand-yellow shrink-0 shadow-md flex items-center justify-center">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source type="image/webp" srcSet="/logo-emblem-trans.webp" />
-                <img
-                  src="/logo-emblem-trans.png"
-                  alt="Eski İskele Dondurmacısı Logosu"
-                  width={36}
-                  height={36}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="sync"
-                  className="w-full h-full object-contain"
-                />
-              </picture>
+              <img
+                src="/logo-emblem-trans.webp"
+                alt="Eski İskele Dondurmacısı Logosu"
+                width={36}
+                height={36}
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex flex-col text-left">
               <span

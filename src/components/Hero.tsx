@@ -58,8 +58,8 @@ export const Hero: React.FC = () => {
         </svg>
       </div>
 
-      {/* Merkezi Sıcak Altın Aurası */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-yellow/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Merkezi Sıcak Altın Aurası (GPU Radyal Gradyan) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full [background:radial-gradient(circle,rgba(239,213,129,0.18)_0%,transparent_70%)] pointer-events-none" />
 
       {/* 2. MOBİLDE KALABALIĞI AZALT: Lokasyon Rozeti Yalnızca Masaüstünde (hidden md:inline-flex) */}
       <motion.div
@@ -79,28 +79,25 @@ export const Hero: React.FC = () => {
 
       {/* 3. MERKEZİ İÇERİK ALANI */}
       <div className="relative z-10 max-w-5xl mx-auto flex-1 flex flex-col items-center justify-center my-auto py-2 w-full">
-        {/* Yazı arkası yumuşak kontrast aurası */}
-        <div className="absolute -inset-x-4 -inset-y-6 bg-brand-teal/30 md:bg-brand-teal/20 rounded-3xl blur-2xl -z-10 pointer-events-none" />
+        {/* Yazı arkası yumuşak kontrast aurası (GPU Radyal Gradyan) */}
+        <div className="absolute -inset-x-4 -inset-y-6 rounded-3xl [background:radial-gradient(circle,rgba(22,160,146,0.3)_0%,transparent_80%)] -z-10 pointer-events-none" />
 
-        {/* 2. LOGO: Sabit Genişlik & Yükseklik Oranı (Tam Sıfır CLS, Anında WebP) */}
-        <div className="w-[180px] sm:w-[206px] md:w-[240px] aspect-[206/80] flex items-center justify-center mb-3 sm:mb-4 md:mb-6 relative group shrink-0">
+        {/* 2. LOGO: Sabit Yükseklik & Genişlikli Kapsayıcı (Tam Sıfır CLS, Anında WebP) */}
+        <div className="h-20 md:h-28 w-[206px] md:w-[288px] flex items-center justify-center mb-3 sm:mb-4 md:mb-6 relative group shrink-0">
           {/* Arkada doğal altın ışıma */}
-          <div className="absolute inset-0 bg-brand-yellow/25 rounded-full blur-xl pointer-events-none" />
+          <div className="absolute inset-0 rounded-full [background:radial-gradient(circle,rgba(239,213,129,0.25)_0%,transparent_70%)] pointer-events-none" />
 
           {/* Şeffaf ve Kutusuz Orijinal Logo */}
-          <picture className="relative z-10 w-full h-full flex items-center justify-center">
-            <source type="image/webp" srcSet="/logo-full-trans.webp" />
-            <img
-              src="/logo-full-trans.png"
-              alt="Eski İskele Dondurmacısı Logosu"
-              width={206}
-              height={80}
-              loading="eager"
-              fetchPriority="high"
-              decoding="sync"
-              className="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
-            />
-          </picture>
+          <img
+            src="/logo-full-trans.webp"
+            alt="Eski İskele Dondurmacısı Logosu"
+            width={206}
+            height={80}
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            className="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
+          />
         </div>
 
         {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama (Statik - Sıfır Dikey Zıplama) */}

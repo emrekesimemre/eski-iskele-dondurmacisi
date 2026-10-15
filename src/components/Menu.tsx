@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MenuItem } from '../types';
 import { Star, Shield, Award } from 'lucide-react';
 
@@ -107,18 +107,7 @@ export const menuItems: MenuItem[] = [
 
 type CategoryFilter = 'Tümü' | 'Klasik' | 'Mevsimlik' | 'Özel Reçete';
 
-// Animasyon varyantları (Layout shift'i önlemek için container gizlenmez)
-const gridContainerVariants: Variants = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.02,
-    },
-  },
-};
-
+// Animasyon varyantları
 export const Menu: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>('Tümü');
 
@@ -132,52 +121,34 @@ export const Menu: React.FC = () => {
       id="menu"
       className="relative w-full bg-brand-navy text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Arka plan ışık efektleri */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-teal/15 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-brand-yellow/10 rounded-full blur-[130px] pointer-events-none" />
+      {/* Arka plan ışık efektleri (GPU dostu radyal gradyanlar) */}
+      <div className="absolute top-1/4 -left-40 w-96 h-96 [background:radial-gradient(circle,rgba(22,160,146,0.15)_0%,transparent_70%)] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 [background:radial-gradient(circle,rgba(239,213,129,0.1)_0%,transparent_70%)] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ============================================================
-            2. ÜST BÖLÜM (HEADER & FİLTRELER)
+            2. ÜST BÖLÜM (HEADER & FİLTRELER) - Statik & Her Zaman Görünür
         ============================================================ */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           {/* Hap (Pill) Rozet: Teal border ve yazı */}
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4">
             <Star className="w-3.5 h-3.5 text-brand-teal fill-brand-teal" />
             <span>HAKİKİ DÖVME USULÜ</span>
-          </motion.div>
+          </div>
 
           {/* Başlık: Beyaz Serif + Brand-Yellow İtalik Serif */}
-          <motion.h2
-            initial={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white mb-6"
-          >
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white mb-6">
             Özenle Hazırlanan <br />
             <span className="text-brand-yellow italic font-serif">Lezzetlerimiz</span>
-          </motion.h2>
+          </h2>
 
           {/* İnce gri/beyaz açıklama metni */}
-          <motion.p
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.4, delay: 0.08 }}
-            className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed"
-          >
+          <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
             Tüm dondurmalarımızda sadece Ahlat yaylalarının taze sütü, yüksek dağların yabani salebi ve mevsiminde toplanan doğal meyveler kullanılır. Asla glikoz şurubu veya renklendirici içermez.
-          </motion.p>
+          </p>
 
           {/* Filtre Butonları */}
-          <motion.div
-            initial={{ opacity: 0.8, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-            transition={{ duration: 0.35, delay: 0.1 }}
-            className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10"
-          >
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10">
             {(['Tümü', 'Klasik', 'Mevsimlik', 'Özel Reçete'] as CategoryFilter[]).map((category) => {
               const isActive = activeFilter === category;
               return (
@@ -194,20 +165,13 @@ export const Menu: React.FC = () => {
                 </button>
               );
             })}
-          </motion.div>
+          </div>
         </div>
 
         {/* ============================================================
-            3 & 4. GRID VE KART MİMARİSİ (ASİMETRİK BENTO)
+            3 & 4. GRID VE KART MİMARİSİ (ASİMETRİK BENTO) - STATİK & SIFIR GECİKME
         ============================================================ */}
-        <motion.div
-          layout
-          variants={gridContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05, margin: "0px 0px 250px 0px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => {
               const isFeatured = item.isFeatured;
@@ -216,11 +180,11 @@ export const Menu: React.FC = () => {
                 <motion.article
                   layout
                   key={item.id}
-                  initial={{ opacity: 1, scale: 1, y: 0 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, y: 10 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className={`will-change-transform will-change-opacity group relative rounded-3xl bg-white/5 backdrop-blur-sm p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border border-white/10 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] ${
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.25 }}
+                  className={`group relative rounded-3xl bg-white/5 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border border-white/10 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] ${
                     isFeatured ? 'md:col-span-2' : ''
                   }`}
                 >
@@ -303,7 +267,7 @@ export const Menu: React.FC = () => {
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
       </div>
     </section>
