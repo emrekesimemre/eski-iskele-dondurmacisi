@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { HistoryMilestone, ArtisanValue } from '../types';
 import { Milk, Mountain, Clock, Feather, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -63,10 +64,16 @@ export const History: React.FC = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* ============================================================
-            1. BÖLÜM: BAŞLIK & ÜST BÖLÜM (Statik HTML - Asla Gecikmez)
+            1. BÖLÜM: BAŞLIK & ÜST BÖLÜM (Zarif Süzülme)
         ============================================================ */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy/5 text-brand-navy text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-navy/10">
+        <motion.div
+          initial={{ opacity: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy/5 text-brand-navy text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-navy/10 shadow-sm">
             <Feather className="w-3.5 h-3.5 text-brand-red" />
             <span>Felsefemiz & Hikayemiz</span>
           </div>
@@ -80,8 +87,8 @@ export const History: React.FC = () => {
           </h2>
 
           {/* Turkuaz Alt Çizgi */}
-          <div className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full" />
-        </div>
+          <div className="w-36 sm:w-48 md:w-56 h-1 sm:h-1.5 bg-brand-teal mx-auto mt-4 sm:mt-5 rounded-full shadow-sm" />
+        </motion.div>
 
         {/* ============================================================
             2. BÖLÜM: HİKAYE METNİ VE PARALLAX GÖRSEL (Statik Grid)
@@ -155,14 +162,14 @@ export const History: React.FC = () => {
 
               {/* Görsel Kapsayıcısı */}
               <div
-                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy/10"
+                className="group relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl bg-brand-navy/10"
               >
                 <img
                   src="/ahlat-selcuklu.png"
                   alt="Ahlat Selçuklu Meydan Mezarlığı Mezar Taşları"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.95]"
+                  className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.95] group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                 />
 
                 {/* Yukarıya Doğru Uzatılmış Zengin Karartma Kaplaması */}
@@ -206,10 +213,10 @@ export const History: React.FC = () => {
             return (
               <div
                 key={val.title}
-                className="group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-default"
+                className="group p-6 sm:p-8 rounded-2xl bg-white border border-brand-navy/10 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-brand-teal/30 transition-all duration-300 flex flex-col h-full cursor-default"
               >
                 {/* Açık turkuaz kutu içindeki ikon */}
-                <div className="w-14 h-14 rounded-xl bg-brand-teal/10 text-brand-teal p-3.5 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shrink-0">
+                <div className="w-14 h-14 rounded-xl bg-brand-teal/10 text-brand-teal p-3.5 flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-teal/20 shrink-0">
                   <IconComponent className="w-7 h-7" />
                 </div>
 

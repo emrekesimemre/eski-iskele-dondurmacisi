@@ -127,11 +127,17 @@ export const Menu: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ============================================================
-            2. ÜST BÖLÜM (HEADER & FİLTRELER) - Statik & Her Zaman Görünür
+            2. ÜST BÖLÜM (HEADER & FİLTRELER) - Zarif Süzülme
         ============================================================ */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <motion.div
+          initial={{ opacity: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45 }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
+        >
           {/* Hap (Pill) Rozet: Teal border ve yazı */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal text-brand-teal bg-brand-teal/10 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 shadow-sm">
             <Star className="w-3.5 h-3.5 text-brand-teal fill-brand-teal" />
             <span>HAKİKİ DÖVME USULÜ</span>
           </div>
@@ -155,9 +161,9 @@ export const Menu: React.FC = () => {
                 <button
                   key={category}
                   onClick={() => setActiveFilter(category)}
-                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm transition-all duration-200 ${
+                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 ${
                     isActive
-                      ? 'bg-brand-yellow text-brand-navy font-semibold shadow-md scale-105'
+                      ? 'bg-brand-yellow text-brand-navy font-semibold shadow-md'
                       : 'bg-transparent border border-white/20 text-white hover:border-white/50 hover:bg-white/5'
                   }`}
                 >
@@ -166,7 +172,7 @@ export const Menu: React.FC = () => {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* ============================================================
             3 & 4. GRID VE KART MİMARİSİ (ASİMETRİK BENTO) - STATİK & SIFIR GECİKME
@@ -184,7 +190,7 @@ export const Menu: React.FC = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.25 }}
-                  className={`group relative rounded-3xl bg-white/5 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border border-white/10 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] ${
+                  className={`group relative rounded-3xl bg-white/5 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 border border-white/10 hover:-translate-y-1.5 hover:border-brand-yellow/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] ${
                     isFeatured ? 'md:col-span-2' : ''
                   }`}
                 >

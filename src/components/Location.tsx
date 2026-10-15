@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   MapPin,
   Clock,
@@ -51,11 +52,17 @@ export const Location: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ============================================================
-            ÜST BAŞLIK (HEADER) - Statik & Her Zaman Görünür
+            ÜST BAŞLIK (HEADER) - Zarif Süzülme
         ============================================================ */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+        <motion.div
+          initial={{ opacity: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45 }}
+          className="text-center max-w-2xl mx-auto mb-16 sm:mb-20"
+        >
           {/* Hap (Pill) Rozet: Pusula ikonu + ZİYARET & ULAŞIM */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-teal/15 text-brand-teal text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-teal/30">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-teal/15 text-brand-teal text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 border border-brand-teal/30 shadow-sm">
             <Compass className="w-3.5 h-3.5 text-brand-teal" />
             <span>ZİYARET & ULAŞIM</span>
           </div>
@@ -70,7 +77,7 @@ export const Location: React.FC = () => {
           <p className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light">
             Van Gölü&apos;nün serinletici kıyısında, tarihi Ahlat İskelesi&apos;nin hemen yanı başında taze dövme dondurmamızla sizleri bekliyoruz.
           </p>
-        </div>
+        </motion.div>
 
         {/* ============================================================
             ASİMETRİK GRID (Sol 2 Kolon, Sağ 3 Kolon) - Statik
@@ -170,7 +177,7 @@ export const Location: React.FC = () => {
                 href={contactInfo.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 min-w-[150px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal/90 text-brand-navy font-bold text-sm shadow-lg hover:shadow-brand-teal/30 transition-all"
+                className="flex-1 min-w-[150px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal/90 text-brand-navy font-bold text-sm shadow-lg hover:shadow-brand-teal/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <Navigation className="w-4 h-4" />
                 <span>Yol Tarifi Al</span>
@@ -179,7 +186,7 @@ export const Location: React.FC = () => {
 
               <button
                 onClick={handleCopyAddress}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-sm border border-white/10 transition-all active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-sm border border-white/10 transform hover:scale-[1.02] active:scale-95 transition-all"
                 title="Adresi Kopyala"
               >
                 {copied ? (

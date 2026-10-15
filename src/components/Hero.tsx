@@ -83,7 +83,12 @@ export const Hero: React.FC = () => {
         <div className="absolute -inset-x-4 -inset-y-6 rounded-3xl [background:radial-gradient(circle,rgba(22,160,146,0.3)_0%,transparent_80%)] -z-10 pointer-events-none" />
 
         {/* 2. LOGO: Sabit Yükseklik & Genişlikli Kapsayıcı (Tam Sıfır CLS, Anında WebP) */}
-        <div className="h-20 md:h-28 w-[206px] md:w-[288px] flex items-center justify-center mb-3 sm:mb-4 md:mb-6 relative group shrink-0">
+        <motion.div
+          initial={{ opacity: 0.92, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="h-20 md:h-28 w-[206px] md:w-[288px] flex items-center justify-center mb-3 sm:mb-4 md:mb-6 relative group shrink-0"
+        >
           {/* Arkada doğal altın ışıma */}
           <div className="absolute inset-0 rounded-full [background:radial-gradient(circle,rgba(239,213,129,0.25)_0%,transparent_70%)] pointer-events-none" />
 
@@ -98,10 +103,15 @@ export const Hero: React.FC = () => {
             decoding="sync"
             className="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(23,22,48,0.2)] transform group-hover:scale-105 transition-transform duration-500"
           />
-        </div>
+        </motion.div>
 
-        {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama (Statik - Sıfır Dikey Zıplama) */}
-        <div className="space-y-3 sm:space-y-4 max-w-4xl lg:max-w-5xl mx-auto px-2">
+        {/* 1. MOBİL TİPOGRAFİYİ DEVLEŞTİR: Başlık & Açıklama (Zarif Giriş) */}
+        <motion.div
+          initial={{ opacity: 0.9, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.06, ease: 'easeOut' }}
+          className="space-y-3 sm:space-y-4 max-w-4xl lg:max-w-5xl mx-auto px-2"
+        >
           {/* Üst Rozet Satırı */}
           <div className="flex items-center justify-center gap-2 text-brand-navy/90 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
@@ -122,12 +132,15 @@ export const Hero: React.FC = () => {
                 preserveAspectRatio="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
+                <motion.path
                   d="M6 16C75 7 185 4 394 15C310 22 170 19 80 18"
                   stroke="#c82136"
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  initial={{ pathLength: 0.2, opacity: 0.8 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
                 />
               </svg>
             </span>
@@ -138,13 +151,18 @@ export const Hero: React.FC = () => {
             Süphan ve Nemrut yaylalarının taze sütü, yüksek dağların yabani salebi ve göl kenarının serinletici esintisiyle...
             Ahlat&apos;ın tarihi iskelesinde katkısız, dürüst ve hakiki dondurma deneyimi.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 3. BUTONLAR: Sabit ve Sıfır Kayma */}
-        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
+        {/* 3. BUTONLAR: Sabit ve Zarif Giriş */}
+        <motion.div
+          initial={{ opacity: 0.9, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
+          className="mt-6 sm:mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0"
+        >
           <motion.button
             onClick={scrollToMenu}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className="group w-full md:w-auto px-8 py-4 rounded-full bg-brand-navy text-brand-yellow hover:bg-brand-navy/90 font-bold tracking-wide text-base shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2.5 border border-brand-yellow/30"
           >
@@ -154,14 +172,14 @@ export const Hero: React.FC = () => {
 
           <motion.button
             onClick={scrollToHistory}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className="group w-full md:w-auto px-8 py-4 rounded-full bg-brand-yellow/90 hover:bg-brand-yellow text-brand-navy font-bold tracking-wide text-base shadow-md hover:shadow-xl transition-all duration-300 border border-brand-navy/20 flex items-center justify-center gap-2"
           >
             <span>Hikayemiz & Felsefemiz</span>
             <ChevronRight className="w-4 h-4 text-brand-navy/70 transform group-hover:translate-x-1 transition-transform duration-200" />
           </motion.button>
-        </div>
+        </motion.div>
       </div>
 
       {/* 4. AŞAĞI KAYDIRIN GÖSTERGESİ */}
